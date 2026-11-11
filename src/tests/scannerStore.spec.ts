@@ -308,8 +308,12 @@ describe('scanner store — advisory drawer', () => {
     const store = useScannerStore()
     const advisories = [advisory('GHSA-x')]
 
-    store.openAdvisory('lodash', advisories)
-    expect(store.selectedAdvisory).toEqual({ pkgName: 'lodash', advisories })
+    store.openAdvisory('lodash', '4.17.15', advisories)
+    expect(store.selectedAdvisory).toEqual({
+      pkgName: 'lodash',
+      version: '4.17.15',
+      advisories,
+    })
 
     store.closeAdvisory()
     expect(store.selectedAdvisory).toBeNull()

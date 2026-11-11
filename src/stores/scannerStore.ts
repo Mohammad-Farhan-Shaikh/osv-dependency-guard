@@ -28,9 +28,11 @@ export const useScannerStore = defineStore('scanner', () => {
   const scanResults = ref<ScannedResult[]>([])
   const unsupportedDependencies = ref<UnsupportedDependency[]>([])
   const manifestWarnings = ref<string[]>([])
-  const selectedAdvisory = ref<{ pkgName: string; advisories: VulnerabilityAdvisory[] } | null>(
-    null,
-  )
+  const selectedAdvisory = ref<{
+    pkgName: string
+    version: string
+    advisories: VulnerabilityAdvisory[]
+  } | null>(null)
   const errorMessage = ref<string | null>(null)
   const scannedCount = ref(0)
   const totalCount = ref(0)
@@ -192,8 +194,12 @@ export const useScannerStore = defineStore('scanner', () => {
     activeController?.abort()
   }
 
-  function openAdvisory(pkgName: string, advisories: VulnerabilityAdvisory[]) {
-    selectedAdvisory.value = { pkgName, advisories }
+  function openAdvisory(
+    pkgName: string,
+    version: string,
+    advisories: VulnerabilityAdvisory[],
+  ) {
+    selectedAdvisory.value = { pkgName, version, advisories }
   }
 
   function closeAdvisory() {
