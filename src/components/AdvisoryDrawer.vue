@@ -2,8 +2,8 @@
 import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
 import { Check, Copy, ExternalLink, ShieldAlert, X } from 'lucide-vue-next'
 import { useScannerStore } from '@/stores/scannerStore'
-import type { AffectedRange } from '@/types/vulnerability'
 import { SEVERITY_LABELS, SEVERITY_TEXT_CLASS } from '@/utils/severity'
+import { formatAffectedRange } from '@/utils/format'
 
 const store = useScannerStore()
 
@@ -26,13 +26,6 @@ const entries = computed(() => {
 
 function isSafeUrl(url: string): boolean {
   return /^https?:\/\//i.test(url)
-}
-
-function formatRange(range: AffectedRange): string {
-  if (range.introduced && range.fixed) return `>= ${range.introduced}, < ${range.fixed}`
-  if (range.introduced) return `>= ${range.introduced}`
-  if (range.fixed) return `< ${range.fixed}`
-  return 'Unknown range'
 }
 
 function formatDate(value: string): string {
@@ -226,7 +219,7 @@ onUnmounted(() => {
                 class="text-xs text-slate-300 font-mono flex items-center gap-2"
               >
                 <span class="text-[10px] uppercase text-slate-500">{{ range.type }}</span>
-                <span>{{ formatRange(range) }}</span>
+                <span>{{ formatAffectedRange(range) }}</span>
               </li>
             </ul>
           </div>

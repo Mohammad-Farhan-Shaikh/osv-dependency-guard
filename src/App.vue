@@ -4,6 +4,7 @@ import DropzoneUploader from '@/components/DropzoneUploader.vue'
 import VulnerabilityTable from '@/components/VulnerabilityTable.vue'
 import AdvisoryDrawer from '@/components/AdvisoryDrawer.vue'
 import UnsupportedDependencies from '@/components/UnsupportedDependencies.vue'
+import ExportToolbar from '@/components/ExportToolbar.vue'
 import MetricCard from '@/components/common/MetricCard.vue'
 import { AlertTriangle, Ban, CheckCircle2, RotateCcw, Shield } from 'lucide-vue-next'
 
@@ -157,6 +158,10 @@ const store = useScannerStore()
               store.metrics.errorCount > 0 ? 'Partial — some scans failed' : 'Overall manifest rating'
             "
           />
+        </div>
+
+        <div class="mb-6">
+          <ExportToolbar />
         </div>
 
         <VulnerabilityTable />
