@@ -90,9 +90,13 @@ const triggerSampleScan = () => {
 </script>
 
 <template>
-  <section class="bg-slate-900 border border-slate-800 rounded-xl p-6" aria-labelledby="upload-heading">
+  <section
+    class="bg-slate-900 border border-slate-800 rounded-xl p-6"
+    aria-labelledby="upload-heading"
+    :aria-busy="store.isScanning"
+  >
     <div
-      class="border-2 border-dashed rounded-lg p-8 text-center transition-all"
+      class="border-2 border-dashed rounded-lg p-8 text-center transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
       :class="[
         isDragging ? 'border-indigo-500 bg-indigo-500/10' : 'border-slate-700 hover:border-slate-500',
         store.isScanning ? 'cursor-not-allowed opacity-60' : 'cursor-pointer',
@@ -122,13 +126,13 @@ const triggerSampleScan = () => {
         aria-hidden="true"
       />
       <UploadCloud v-else class="w-12 h-12 text-indigo-400 mx-auto mb-3" aria-hidden="true" />
-      <h3 id="upload-heading" class="text-lg font-semibold text-white">
+      <h2 id="upload-heading" class="text-lg font-semibold text-white">
         {{ store.isScanning ? 'Scanning dependencies…' : 'Upload package.json' }}
-      </h3>
+      </h2>
       <p class="text-sm text-slate-400 mt-1">
         Drag and drop your manifest here or click to select
       </p>
-      <p class="text-xs text-slate-500 mt-2">JSON manifest · up to 2 MB</p>
+      <p class="text-xs text-slate-400 mt-2">JSON manifest · up to 2 MB</p>
     </div>
 
     <div v-if="store.isScanning" class="mt-4">
@@ -140,6 +144,7 @@ const triggerSampleScan = () => {
         class="w-full h-2 rounded-full bg-slate-800 overflow-hidden"
         role="progressbar"
         :aria-valuenow="progressPercent"
+        :aria-valuetext="`${store.scannedCount} of ${store.totalCount} dependencies checked`"
         aria-valuemin="0"
         aria-valuemax="100"
         :aria-label="`Scan progress: ${progressPercent}%`"

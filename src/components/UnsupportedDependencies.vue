@@ -15,10 +15,10 @@ defineProps<{
     <div class="flex items-start gap-3">
       <AlertTriangle class="w-5 h-5 text-amber-400 shrink-0 mt-0.5" aria-hidden="true" />
       <div class="w-full">
-        <h3 id="unsupported-heading" class="text-sm font-semibold text-amber-300">
+        <h2 id="unsupported-heading" class="text-sm font-semibold text-amber-300">
           {{ dependencies.length }}
           {{ dependencies.length === 1 ? 'dependency' : 'dependencies' }} could not be scanned
-        </h3>
+        </h2>
         <p class="text-xs text-amber-200/70 mt-1">
           These entries are not npm registry versions, so they were skipped. They are not counted
           as clean.

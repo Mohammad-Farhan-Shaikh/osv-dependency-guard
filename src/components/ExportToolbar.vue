@@ -57,7 +57,7 @@ function downloadReport() {
     aria-labelledby="export-heading"
   >
     <div>
-      <h3 id="export-heading" class="text-sm font-semibold text-white">Export results</h3>
+      <h2 id="export-heading" class="text-sm font-semibold text-white">Export results</h2>
       <p class="text-xs text-slate-400 mt-0.5">
         Download the current scan for sharing, CI evidence or archiving.
       </p>

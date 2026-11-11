@@ -127,6 +127,7 @@ onUnmounted(() => {
       role="dialog"
       aria-modal="true"
       aria-labelledby="advisory-title"
+      aria-describedby="advisory-context"
     >
       <div class="p-6 border-b border-slate-800 flex items-start justify-between gap-3">
         <div class="flex items-center gap-3 min-w-0">
@@ -135,7 +136,7 @@ onUnmounted(() => {
             <h2 id="advisory-title" class="text-lg font-bold text-white font-mono truncate">
               {{ store.selectedAdvisory.pkgName }}
             </h2>
-            <p class="text-xs text-slate-400">
+            <p id="advisory-context" class="text-xs text-slate-400">
               Installed version
               <span class="font-mono">{{ store.selectedAdvisory.version }}</span>
             </p>
@@ -187,7 +188,7 @@ onUnmounted(() => {
             </span>
           </div>
 
-          <h4 class="text-sm font-semibold text-white mt-3">{{ entry.advisory.summary }}</h4>
+          <h3 class="text-sm font-semibold text-white mt-3">{{ entry.advisory.summary }}</h3>
 
           <div v-if="entry.advisory.aliases.length" class="mt-2 flex flex-wrap gap-1.5">
             <span
@@ -200,25 +201,25 @@ onUnmounted(() => {
           </div>
 
           <div class="mt-3">
-            <p class="text-[11px] uppercase tracking-wide text-slate-500 mb-1">Description</p>
+            <p class="text-[11px] uppercase tracking-wide text-slate-400 mb-1">Description</p>
             <p
               v-if="entry.advisory.details"
               class="text-xs text-slate-400 leading-relaxed whitespace-pre-wrap break-words max-h-64 overflow-y-auto"
             >
               {{ entry.advisory.details }}
             </p>
-            <p v-else class="text-xs text-slate-500">No description provided.</p>
+            <p v-else class="text-xs text-slate-400">No description provided.</p>
           </div>
 
           <div v-if="entry.advisory.affectedRanges.length" class="mt-3">
-            <p class="text-[11px] uppercase tracking-wide text-slate-500 mb-1">Affected versions</p>
+            <p class="text-[11px] uppercase tracking-wide text-slate-400 mb-1">Affected versions</p>
             <ul class="space-y-1">
               <li
                 v-for="(range, index) in entry.advisory.affectedRanges"
                 :key="index"
                 class="text-xs text-slate-300 font-mono flex items-center gap-2"
               >
-                <span class="text-[10px] uppercase text-slate-500">{{ range.type }}</span>
+                <span class="text-[10px] uppercase text-slate-400">{{ range.type }}</span>
                 <span>{{ formatAffectedRange(range) }}</span>
               </li>
             </ul>
@@ -237,7 +238,7 @@ onUnmounted(() => {
           </div>
 
           <div v-if="entry.references.length" class="mt-3">
-            <p class="text-[11px] uppercase tracking-wide text-slate-500 mb-1">References</p>
+            <p class="text-[11px] uppercase tracking-wide text-slate-400 mb-1">References</p>
             <ul class="space-y-1">
               <li v-for="reference in entry.references" :key="reference.url">
                 <a
@@ -255,7 +256,7 @@ onUnmounted(() => {
 
           <p
             v-if="entry.advisory.published || entry.advisory.modified"
-            class="mt-3 text-[11px] text-slate-500"
+            class="mt-3 text-[11px] text-slate-400"
           >
             <span v-if="entry.advisory.published">
               Published {{ formatDate(entry.advisory.published) }}

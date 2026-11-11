@@ -21,6 +21,6 @@ defineProps<{
     >
       {{ value }}
     </div>
-    <p v-if="subtitle" class="text-xs text-slate-500 mt-1">{{ subtitle }}</p>
+    <p v-if="subtitle" class="text-xs text-slate-400 mt-1">{{ subtitle }}</p>
   </div>
 </template>

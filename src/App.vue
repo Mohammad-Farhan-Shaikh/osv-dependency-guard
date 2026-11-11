@@ -13,6 +13,12 @@ const store = useScannerStore()
 
 <template>
   <div class="min-h-screen bg-slate-950 text-slate-100">
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-indigo-600 focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
+    >
+      Skip to main content
+    </a>
     <div class="max-w-6xl mx-auto px-4 py-10">
       <header
         class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between pb-8 border-b border-slate-800 mb-8"
@@ -37,11 +43,12 @@ const store = useScannerStore()
         </div>
       </header>
 
-      <DropzoneUploader />
+      <main id="main-content" tabindex="-1">
+        <DropzoneUploader />
 
-      <p v-if="store.manifestWarnings.length > 0" class="mt-3 text-xs text-slate-500">
-        {{ store.manifestWarnings.join(' ') }}
-      </p>
+        <p v-if="store.manifestWarnings.length > 0" class="mt-3 text-xs text-slate-400">
+          {{ store.manifestWarnings.join(' ') }}
+        </p>
 
       <UnsupportedDependencies
         v-if="store.unsupportedDependencies.length > 0"
@@ -166,6 +173,14 @@ const store = useScannerStore()
 
         <VulnerabilityTable />
       </div>
+      </main>
+
+      <footer class="mt-10 pt-6 border-t border-slate-800 text-xs text-slate-400">
+        <p>
+          DepGuard runs entirely in your browser. Your manifest never leaves this device, and no API
+          key is required.
+        </p>
+      </footer>
 
       <AdvisoryDrawer />
     </div>
