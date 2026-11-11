@@ -193,5 +193,4 @@ npm run lint:check && npm run test && npm run build
 ```
 
 ## License
-
-This repository does not currently include a license file. The maintainer intends to add an MIT license via GitHub's license template; until that file exists, default copyright applies (all rights reserved).
+This project is licensed under the [MIT License](LICENSE).
